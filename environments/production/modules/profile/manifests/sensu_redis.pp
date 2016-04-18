@@ -8,6 +8,6 @@ class profile::sensu_redis (
   include ::profile::sensucheck::redis
   include ::profile::monitcheck::redis
   include ::profile::firewall::redis
-
+  include ::profile::sensucheck::proc_crond
 
 }
