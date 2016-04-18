@@ -1,0 +1,15 @@
+{
+  "CHANGELOG": "76e6518a73ada3e8b731edf3e2e6795d",
+  "DEVELOP.md": "adf06994e5877c50b025d79a0f3bbdec",
+  "Gemfile": "c228ec31686492472e031241279f3b0c",
+  "LICENSE": "db8b7e21f0412972f293050836e2ab64",
+  "README.markdown": "0480fb3821fd4a44434d500cf4268ffe",
+  "Rakefile": "d80ce67ea0fed68691662c103b60a239",
+  "manifests/init.pp": "41d94bf83b50588486037f09b7d7de93",
+  "manifests/params.pp": "ffc437cf7edcd9bd004cc2c39ff4143e",
+  "metadata.json": "140f9c6b346769b9a1073ffa92fc586f",
+  "spec/classes/openvmtools_init_spec.rb": "ca4428cb2e0492fd19bd0515bc655c52",
+  "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+  "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+  "tests/init.pp": "79040cea20e3affd3f2b37966314fb5e"
+}

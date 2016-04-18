@@ -1,0 +1,24 @@
+{
+  "name": "spotify-puppetexplorer",
+  "version": "1.0.1",
+  "author": "spotify",
+  "summary": "Manage the Puppet Explorer web application",
+  "license": "Apache-2.0",
+  "source": "https://github.com/spotify/puppet-puppetexplorer.git",
+  "project_page": "https://github.com/spotify/puppet-puppetexplorer",
+  "issues_url": "https://github.com/spotify/puppet-puppetexplorer/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs/apache",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 1.0.0"
+    }
+  ]
+}

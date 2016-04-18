@@ -1,0 +1,71 @@
+---
+# Monitoring
+sensu::packages:
+  - sensu-plugins-process-checks
+  - sensu-plugins-memory-checks
+  - sensu-plugins-disk-checks
+  - sensu-plugins-load-checks
+  - sensu-plugins-cpu-checks
+  - sensu-plugins-puppet
+
+sensu::checks:
+  'puppet-agent':
+    command: 'sudo /opt/sensu/embedded/bin/check-puppet-last-run.rb --crit-age 1800 --warn-age 1380'
+  'cpu':
+    command: 'check-cpu.rb -c 50'
+  'memory':
+    command: 'check-memory-percent.rb -w 80 -c 90'
+  'swap':
+    command: 'check-swap.rb -w 50 -c 200'
+  'disk':
+    command: 'check-disk-usage.rb -w 75 -c 90'
+  'proc-ntpd':
+    command: 'check-process.rb -p /usr/sbin/ntpd'
+  'proc-sshd':
+    command: 'check-process.rb -f /var/run/sshd.pid'
+  'proc-crond':
+    command: 'check-process.rb -f /var/run/crond.pid'
+  'proc-vmtools':
+    command: 'check-process.rb -p /usr/bin/vmtoolsd'
+  'proc-monit':
+    command: 'check-process.rb -f /var/run/monit.pid'
+
+sensu::server: false
+sensu::client: true
+sensu::purge:
+  config: true
+  plugins: true
+sensu::install_repo: true
+sensu::use_embedded_ruby: true
+
+monit::check:
+  'ntp':
+    content: 'test'
+
+# SSH Configuration
+ssh::server::options:
+  Port: '22'
+  Protocol: '2'
+  X11Forwarding: 'no'
+  PermitRootLogin: 'yes'
+  PasswordAuthentication: 'yes'
+  PrintMotd: 'yes'
+  ListenAddress: "%{ipaddress}"
+  ClientAliveInterval: '0'
+  ClientAliveCountMax: '0'
+  HostKey:
+    - '/etc/ssh/ssh_host_rsa_key'
+    - '/etc/ssh/ssh_host_ecdsa_key'
+    - '/etc/ssh/ssh_host_ed25519_key'
+
+# Sudo config
+# /opt/puppetlabs/puppet/cache/state/last_run_summary.yaml permissions not allowed for sensu user. Lets use sudo
+sudo::configs::purge: true
+sudo::configs:
+  'sensu-puppet-check':
+    'content': |
+      Defaults:sensu !requiretty
+      sensu ALL=(ALL) NOPASSWD: /opt/sensu/embedded/bin/check-puppet-last-run.rb
+
+# end common.eyaml
+

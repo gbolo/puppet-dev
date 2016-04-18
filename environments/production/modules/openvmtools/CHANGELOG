@@ -1,0 +1,32 @@
+2015-04-10 Michael Arnold <github@razorsedge.org> - 1.0.0
+=========================================================
+
+ Michael Arnold <github@razorsedge.org> (3):
+  * Add the pattern parameter to the service resource.
+  * Fix errors in README.markdown.
+  * Update versions for 1.0.0 release.
+ 
+
+2015-04-01 Michael Arnold <github@razorsedge.org> - 0.2.0
+=========================================================
+
+ Michael Arnold <github@razorsedge.org> (4):
+  * Fixing Debian and Ubuntu $service_name.
+  * Fix Debian and Ubuntu $desktop_package_name.
+  * Update metadata summary.
+  * Update versions for 0.2.0 release.
+ 
+
+2015-03-31 Michael Arnold <github@razorsedge.org> - 0.1.0
+=========================================================
+
+ Michael Arnold <github@razorsedge.org> (3):
+  * Created a shiney new module.
+  * Fix errors in the README.markdown.
+  * Update versions for 0.1.0 release.
+ 
+
+2015-03-28 Michael Arnold <github@razorsedge.org> - 0.0.0
+=========================================================
+
+

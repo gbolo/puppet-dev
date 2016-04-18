@@ -1,0 +1,9 @@
+---
+classes:
+  - role::puppetdb
+
+# firewall
+profile::puppetdb::fw_enable: true
+profile::puppetdb::fw_http_port: '8080'
+profile::puppetdb::fw_https_port: '8081'
+profile::puppetdb::fw_source: '0.0.0.0/0'

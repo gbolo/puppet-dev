@@ -1,0 +1,23 @@
+---
+:backends:
+  - eyaml
+  - yaml
+
+:hierarchy:
+  - "nodes/%{::fqdn}"
+  - "location/%{::location}"
+  - "stype/%{::stype}"
+  - "tier/%{::tier}"
+  - "virtual/%{::virtual}"
+  - common
+ 
+:yaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+
+# options are native, deep, deeper
+:merge_behavior: native
+
+:eyaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+  :pkcs7_private_key: '/etc/puppetlabs/secure/eyaml-keys/private_key.pkcs7.pem'
+  :pkcs7_public_key:  '/etc/puppetlabs/secure/eyaml-keys/public_key.pkcs7.pem'

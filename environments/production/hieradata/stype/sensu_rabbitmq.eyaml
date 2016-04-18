@@ -1,0 +1,41 @@
+---
+#class assignment is not needed anymore, since we are including them in role module
+#classes:
+#  - role::sensu_rabbitmq
+
+# rabbitmq
+rabbitmq::version: '3.6.1-1'
+rabbitmq::admin_enable: true
+rabbitmq::ssl_management_port: '15671'
+rabbitmq::port: 'UNSET'
+rabbitmq::ssl_interface: "%{ipaddress}"
+rabbitmq::node_ip_address: "%{ipaddress}"
+rabbitmq::ssl: true
+rabbitmq::ssl_only: true
+rabbitmq::ssl_cacert: '/etc/rabbitmq/ssl/ca.pem'
+rabbitmq::ssl_cert: '/etc/rabbitmq/ssl/cert.pem'
+rabbitmq::ssl_key: '/etc/rabbitmq/ssl/key.pem'
+
+# rabbitmq clustering
+rabbitmq::config_cluster: true
+rabbitmq::cluster_nodes: 
+  - 'sensu-rabbitmq-1'
+  - 'sensu-rabbitmq-2'
+rabbitmq::wipe_db_on_cookie_change: true
+rabbitmq::erlang_cookie: 'QYMDWFWQOAOCTZHSTYQQ'
+#rabbitmq::cluster_node_type: 'disk'
+
+profile::sensu_rabbitmq::require_ssl: true
+profile::sensu_rabbitmq::cacert_path: '/etc/rabbitmq/ssl/ca.pem'
+profile::sensu_rabbitmq::cacert_source: 'puppet:///modules/profile/sensu_rabbitmq/ca.pem'
+profile::sensu_rabbitmq::cert_path: '/etc/rabbitmq/ssl/cert.pem'
+profile::sensu_rabbitmq::cert_source: 'puppet:///modules/profile/sensu_rabbitmq/cert.pem'
+profile::sensu_rabbitmq::key_path: '/etc/rabbitmq/ssl/key.pem'
+profile::sensu_rabbitmq::key_content: ENC[PKCS7,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]
+
+# firewall
+profile::sensu_rabbitmq::fw_enable: true
+profile::puppetdb::fw_http_port: '8080'
+profile::puppetdb::fw_https_port: '8081'
+profile::puppetdb::fw_source: '0.0.0.0/0'
+

@@ -1,0 +1,10 @@
+check process <%= $process %><% if $pid != false { %> with pidfile <%= $pid %> <% } %>
+<% if $proc_match != false { -%>
+  matching "<%= $proc_match %>"
+<% } -%>
+  start program = "<%= $start %>"
+  stop  program = "<%= $stop %>"
+<% if $secondary_fail != false { -%>
+  <%= $secondary_fail %>
+<% } -%>
+  if <%= $restart_count %> restarts within <%= $cycle_count %> cycles then timeout

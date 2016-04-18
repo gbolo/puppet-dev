@@ -1,0 +1,4 @@
+---
+# redis config
+redis::manage_repo: true
+redis::bind: "%{ipaddress}"

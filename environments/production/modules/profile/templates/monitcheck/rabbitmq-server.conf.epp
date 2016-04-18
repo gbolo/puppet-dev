@@ -1,0 +1,4 @@
+check process <%= $profile::monitcheck::rabbitmq::proccess %> with pidfile <%= $profile::monitcheck::rabbitmq::pid %>
+  start program = "<%= $profile::monitcheck::rabbitmq::start %>"
+  stop  program = "<%= $profile::monitcheck::rabbitmq::stop %>"
+  if 5 restarts within 5 cycles then timeout
