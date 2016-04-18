@@ -1,15 +1,15 @@
-class profile::sensucheck::proc_crond (
+class profile::sensucheck::load (
 
-  $check_name     = 'proc_crond',
+  $check_name     = 'load',
   $enabled        = true,
-  $sensu_plugin   = ['sensu-plugins-process-checks'],
+  $sensu_plugin   = ['sensu-plugins-load-checks'],
   $pkg_dependancy = false,
   $interval       = '120',
   $subscribers    = undef,
   $handlers       = undef,
-  $check_warn     = undef,
-  $check_crit     = undef,
-  $check_cmd      = "check-process.rb -f /var/run/crond.pid",
+  $check_warn     = '0.5,1.0,2.0',
+  $check_crit     = '0.9,3.0,5.0',
+  $check_cmd      = "check-load.rb -w ${check_warn} -c ${check_crit} -p",
 
 ) {
 

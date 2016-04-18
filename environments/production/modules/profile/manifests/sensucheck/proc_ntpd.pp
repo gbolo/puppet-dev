@@ -1,6 +1,6 @@
-class profile::sensucheck::proc_crond (
+class profile::sensucheck::proc_ntpd (
 
-  $check_name     = 'proc_crond',
+  $check_name     = 'proc_ntpd',
   $enabled        = true,
   $sensu_plugin   = ['sensu-plugins-process-checks'],
   $pkg_dependancy = false,
@@ -9,7 +9,7 @@ class profile::sensucheck::proc_crond (
   $handlers       = undef,
   $check_warn     = undef,
   $check_crit     = undef,
-  $check_cmd      = "check-process.rb -f /var/run/crond.pid",
+  $check_cmd      = "check-process.rb -p /usr/sbin/ntpd",
 
 ) {
 

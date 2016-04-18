@@ -1,15 +1,16 @@
-class profile::sensucheck::proc_crond (
+class profile::sensucheck::swap (
 
-  $check_name     = 'proc_crond',
+  $check_name     = 'swap',
   $enabled        = true,
-  $sensu_plugin   = ['sensu-plugins-process-checks'],
+  $sensu_plugin   = ['sensu-plugins-memory-checks'],
   $pkg_dependancy = false,
   $interval       = '120',
   $subscribers    = undef,
   $handlers       = undef,
-  $check_warn     = undef,
-  $check_crit     = undef,
-  $check_cmd      = "check-process.rb -f /var/run/crond.pid",
+  # checks units are in MB
+  $check_warn     = '50',
+  $check_crit     = '200',
+  $check_cmd      = "check-swap.rb -w ${check_warn} -c ${check_crit}",
 
 ) {
 

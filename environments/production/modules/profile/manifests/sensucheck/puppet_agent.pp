@@ -1,15 +1,16 @@
-class profile::sensucheck::proc_crond (
+class profile::sensucheck::puppet_agent (
 
-  $check_name     = 'proc_crond',
+  $check_name     = 'puppet_agent',
   $enabled        = true,
-  $sensu_plugin   = ['sensu-plugins-process-checks'],
+  $sensu_plugin   = ['sensu-plugins-puppet'],
   $pkg_dependancy = false,
-  $interval       = '120',
+  $interval       = '600',
   $subscribers    = undef,
   $handlers       = undef,
-  $check_warn     = undef,
-  $check_crit     = undef,
-  $check_cmd      = "check-process.rb -f /var/run/crond.pid",
+  # Check units are in seconds
+  $check_warn     = '7200',
+  $check_crit     = '21600',
+  $check_cmd      = "sudo /opt/sensu/embedded/bin/check-puppet-last-run.rb --warn-age ${check_warn} --crit-age ${check_crit}",
 
 ) {
 

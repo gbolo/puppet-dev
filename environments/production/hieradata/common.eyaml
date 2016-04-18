@@ -1,35 +1,7 @@
 ---
-# Monitoring
-sensu::packages:
-  - sensu-plugins-process-checks
-  - sensu-plugins-memory-checks
-  - sensu-plugins-disk-checks
-  - sensu-plugins-load-checks
-  - sensu-plugins-cpu-checks
-  - sensu-plugins-puppet
 
-sensu::checks:
-  'puppet-agent':
-    command: 'sudo /opt/sensu/embedded/bin/check-puppet-last-run.rb --crit-age 1800 --warn-age 1380'
-  'cpu':
-    command: 'check-cpu.rb -c 50'
-  'memory':
-    command: 'check-memory-percent.rb -w 80 -c 90'
-  'swap':
-    command: 'check-swap.rb -w 50 -c 200'
-  'disk':
-    command: 'check-disk-usage.rb -w 75 -c 90'
-  'proc-ntpd':
-    command: 'check-process.rb -p /usr/sbin/ntpd'
-  'proc-sshd':
-    command: 'check-process.rb -f /var/run/sshd.pid'
-  'proc-crond':
-    command: 'check-process.rb -f /var/run/crond.pid'
-  'proc-vmtools':
-    command: 'check-process.rb -p /usr/bin/vmtoolsd'
-  'proc-monit':
-    command: 'check-process.rb -f /var/run/monit.pid'
-
+# Sesnu Configuration
+#   purge all existing configs, use embedded ruby, and install from repo
 sensu::server: false
 sensu::client: true
 sensu::purge:
@@ -38,11 +10,9 @@ sensu::purge:
 sensu::install_repo: true
 sensu::use_embedded_ruby: true
 
-monit::check:
-  'ntp':
-    content: 'test'
 
 # SSH Configuration
+#   some sane sshd defaults
 ssh::server::options:
   Port: '22'
   Protocol: '2'
