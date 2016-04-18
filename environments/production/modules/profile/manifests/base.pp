@@ -23,16 +23,6 @@ class profile::base {
   include ::profile::sensucheck::ntp_external
   include ::profile::sensucheck::ntpd
 
-
-  # Install Sensu packages defined
-   $pkg_list = hiera_array('sensu::packages')
-   package {$pkg_list:
-     # ensure   => 'latest',
-     ensure   => 'present',
-     provider => 'sensu_gem',
-   }
-
-
   Class['sudo'] -> 
   Class['epel'] -> 
   Class['openvmtools'] -> 
