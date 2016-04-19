@@ -1,4 +1,4 @@
-class profile::monitcheck::vmware_tools (
+class profile::monitcheck::vmtoolsd (
 
   $process    = 'vmtoolsd',
   $pid        = false,

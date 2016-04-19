@@ -6,7 +6,7 @@ class profile::base::firewall::pre (
 
   # Test if ssh port is assigned
   if $ssh_port {
-    $ssh_port = $fw_ssh_port
+    $fw_ssh_port = $ssh_port
   }
   else {
     $fw_ssh_port = '22'
