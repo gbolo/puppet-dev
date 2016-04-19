@@ -1,8 +1,22 @@
-class profile::base::firewall::pre {
+class profile::base::firewall::pre (
+
+  $ssh_port = $ssh::server::options['Port'],
+
+){
+
+  # Test if ssh port is assigned
+  if $ssh_port {
+    $ssh_port = $fw_ssh_port
+  }
+  else {
+    $fw_ssh_port = '22'
+  }
+
   Firewall {
     require => undef,
   }
-   # Default firewall rules
+
+  # Default firewall rules
   firewall { '000 accept all icmp':
     proto  => 'icmp',
     action => 'accept',
@@ -24,7 +38,7 @@ class profile::base::firewall::pre {
     action => 'accept',
   }->
   firewall { '004 accept ssh':
-    dport  => '22',
+    dport  => $fw_ssh_port,
     proto  => 'tcp',
     action => 'accept',
   }
