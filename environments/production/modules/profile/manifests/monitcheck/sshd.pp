@@ -1,6 +1,6 @@
 class profile::monitcheck::sshd (
 
-  $process        = 'sshd2',
+  $process        = 'sshd',
   $pid            = '/var/run/sshd.pid',
   $port           = $ssh::server::options['Port'],
   $proc_match     = false,
