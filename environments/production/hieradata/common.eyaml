@@ -1,18 +1,28 @@
 ---
-
-# Sesnu Configuration
-#   purge all existing configs, use embedded ruby, and install from repo
-sensu::server: false
+##############################################################
+# sensu -- default
+##############################################################
 sensu::client: true
+sensu::server: false
+sensu::api: false
 sensu::purge:
   config: true
   plugins: true
 sensu::install_repo: true
 sensu::use_embedded_ruby: true
 
+##############################################################
+# ntp -- default
+##############################################################
+ntp::servers:
+  - '0.ca.pool.ntp.org'
+  - '3.ca.pool.ntp.org'
+  - '0.north-america.pool.ntp.org'
+  - '3.north-america.pool.ntp.org'
 
-# SSH Configuration
-#   some sane sshd defaults
+##############################################################
+# ssh -- default
+##############################################################
 ssh::server::options:
   Port: '22'
   Protocol: '2'
@@ -28,7 +38,9 @@ ssh::server::options:
     - '/etc/ssh/ssh_host_ecdsa_key'
     - '/etc/ssh/ssh_host_ed25519_key'
 
-# Sudo config
+##############################################################
+# sudo -- default
+##############################################################
 # /opt/puppetlabs/puppet/cache/state/last_run_summary.yaml permissions not allowed for sensu user. Lets use sudo
 sudo::configs::purge: true
 sudo::configs:
@@ -36,6 +48,4 @@ sudo::configs:
     'content': |
       Defaults:sensu !requiretty
       sensu ALL=(ALL) NOPASSWD: /opt/sensu/embedded/bin/check-puppet-last-run.rb
-
-# end common.eyaml
 
