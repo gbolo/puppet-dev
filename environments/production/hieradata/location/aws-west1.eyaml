@@ -19,7 +19,7 @@ rabbitmq::ssl_cacert: '/etc/rabbitmq/ssl/ca.pem'
 rabbitmq::ssl_cert: '/etc/rabbitmq/ssl/cert.pem'
 rabbitmq::ssl_key: '/etc/rabbitmq/ssl/key.pem'
 # [ rabbitmq clustering ] ------------------------------------
-rabbitmq::config_cluster: false
+rabbitmq::config_cluster: true
 rabbitmq::cluster_nodes:
   - 'sensu-rabbitmq-1'
   - 'sensu-rabbitmq-2'
