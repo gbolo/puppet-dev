@@ -3,7 +3,7 @@ class profile::base {
   # Base services/packages
   contain ::ntp
   contain ::ssh::server
-#  include ::sensu
+  include ::sensu
 #  contain ::openvmtools
   contain ::monit
   contain ::epel
