@@ -21,7 +21,7 @@ rabbitmq::cluster_nodes:
   - 'sensu-rabbitmq-2'
 rabbitmq::wipe_db_on_cookie_change: true
 rabbitmq::erlang_cookie: 'QYMDWFWQOAOCTZHSTYQQ'
-rabbitmq::cluster_node_type: 'disk'
+rabbitmq::cluster_node_type: 'disc'
 
 ##############################################################
 # profile::sensu_rabbitmq -- midgar specific
