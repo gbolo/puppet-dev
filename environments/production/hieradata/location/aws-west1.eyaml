@@ -3,6 +3,51 @@ sudo::configs:
     'centos':
         'content'   : 'centos ALL=(ALL) NOPASSWD:ALL'
         'priority'  : 10
+
+##############################################################
+# rabbitmq -- aws-west-1 specific
+##############################################################
+rabbitmq::version: '3.6.1-1'
+rabbitmq::admin_enable: true
+rabbitmq::ssl_management_port: '15671'
+rabbitmq::port: 'UNSET'
+rabbitmq::ssl_interface: "%{ipaddress}"
+rabbitmq::node_ip_address: "%{ipaddress}"
+rabbitmq::ssl: true
+rabbitmq::ssl_only: true
+rabbitmq::ssl_cacert: '/etc/rabbitmq/ssl/ca.pem'
+rabbitmq::ssl_cert: '/etc/rabbitmq/ssl/cert.pem'
+rabbitmq::ssl_key: '/etc/rabbitmq/ssl/key.pem'
+# [ rabbitmq clustering ] ------------------------------------
+rabbitmq::config_cluster: false
+rabbitmq::cluster_nodes:
+  - 'sensu-rabbitmq-1'
+  - 'sensu-rabbitmq-2'
+rabbitmq::wipe_db_on_cookie_change: true
+rabbitmq::erlang_cookie: 'PYADWFWQVAOCTCHSTYJU'
+rabbitmq::cluster_node_type: 'disk'
+
+##############################################################
+# profile::sensu_rabbitmq -- aws-west-1 specific
+##############################################################
+profile::sensu_rabbitmq::sensu_rmq_vhost: 'sensu'
+profile::sensu_rabbitmq::sensu_rmq_user: 'sensu'
+profile::sensu_rabbitmq::sensu_rmq_pass: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEApWupCbq8bkZVwZ3nM8LLD3NHiAcHJk1toxya0W29MMsOJ/vaOkAcSJXPWZJsj3ngJd+bqyi7qhK/nVOIVqmTTKd0QzJWiG+fI6FXtXQYbagi+8+hQu6eihi3+9NF1jMQo7/P3kJIYYRpuWSYfww6wbAmPZcF/YgWIqUklI+yMJZdgwnPfUzLgT4DImJKa8krDwxA9Tq9wSmaa8QCOYX3jBOgJedqcMA5v3k0BCBH0qVao4FiPakt1DzJOLhD1pqppk3K9OnkYBYVuKr9PRJLq0xLbq91DlF0Z4wJ+39HCl0KUz/cWD3cTZXbACNOEIT6f07HL6LAyKYRDHtXBOicdzBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCIM8Qub0w425dnehWCrdPrgCBcb8xQXlhzLAyjpS8YK2NRjxqGSMsq1xRTkXGZTMm5Pg==]
+# [ rabbitmq ssl config ] -----------------------------------
+profile::sensu_rabbitmq::require_ssl: true
+profile::sensu_rabbitmq::cacert_path: '/etc/rabbitmq/ssl/ca.pem'
+profile::sensu_rabbitmq::cacert_source: 'puppet:///modules/profile/sensu_rabbitmq/ca.pem'
+profile::sensu_rabbitmq::cert_path: '/etc/rabbitmq/ssl/cert.pem'
+profile::sensu_rabbitmq::cert_source: 'puppet:///modules/profile/sensu_rabbitmq/cert.pem'
+profile::sensu_rabbitmq::key_path: '/etc/rabbitmq/ssl/key.pem'
+profile::sensu_rabbitmq::key_content: ENC[PKCS7,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]
+
+
+
+
+
+
+
 #sensu::rabbitmq_host: 10.0.77.24
 #sensu::rabbitmq_user: 'guest'
 #sensu::rabbitmq_password: ENC[PKCS7,MIIBewYJKoZIhvcNAQcDoIIBbDCCAWgCAQAxggEjMIIBHwIBADAHMAIxAAIBATANBgkqhkiG9w0BAQEFAASCAQAPlBKnd6sMFVBMqZQLq07x3fB/h1s9pU/15xlBr6eMCDKH8Uxzw74QrUb/9difAWKGl3dtLquGIgBY0RMgusOvW4rY5tBzKrubbgRtJ8HjEvgKVNlZsLpEGSiFEz4ctkRFgNi0k7/R2DgSwX21lTO6dnxVy2ezm25pDyCXdp9eEGEBpwKgIUeUpdtXD9NCYXkByesvv54AB4iwbdLB45mmXjFF1NJlGhIjHsgeMy1R/WYQmtC3RKt8gmS4kwutngLq7OkqfjNRhDJeF/LSF8Tv4NBaUcSlBjQMXP3nLvsJ23shRaxVC2KIavVbv7tI10uT/Eow9HrSE1vNrSM3kAXrMDwGCSqGSIb3DQEHATAdBglghkgBZQMEASoEEJyeX/f3nSvpTgjc/h3oxgSAECfevQvCgZDQEJ1uD+cbqUQ=]
