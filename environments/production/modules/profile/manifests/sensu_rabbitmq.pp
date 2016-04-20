@@ -13,7 +13,7 @@ class profile::sensu_rabbitmq (
 ) {
 
    contain ::rabbitmq
-   include ::profile::sensucheck::rabbitmq
+#   include ::profile::sensucheck::rabbitmq
    include ::profile::monitcheck::rabbitmq
    include ::profile::firewall::rabbitmq
 
@@ -61,6 +61,7 @@ class profile::sensu_rabbitmq (
        owner     => 'rabbitmq',
        group     => 'rabbitmq',
        mode      => '0400',
+       before    => Service['rabbitmq-server'],
      }
 
      file { 'rmq_cert':
@@ -70,6 +71,7 @@ class profile::sensu_rabbitmq (
        owner     => 'rabbitmq',
        group     => 'rabbitmq',
        mode      => '0400',
+       before    => Service['rabbitmq-server'],
      }
 
      file { 'rmq_key':
@@ -79,6 +81,7 @@ class profile::sensu_rabbitmq (
        owner     => 'rabbitmq',
        group     => 'rabbitmq',
        mode      => '0400',
+       before    => Service['rabbitmq-server'],
      }
 
    }
