@@ -14,10 +14,11 @@ rabbitmq::version: '3.6.1-1'
 rabbitmq::admin_enable: true
 rabbitmq::ssl_management_port: '15671'
 rabbitmq::port: 'UNSET'
-rabbitmq::ssl_interface: "%{ipaddress}"
 rabbitmq::node_ip_address: "%{ipaddress}"
 rabbitmq::ssl: true
 rabbitmq::ssl_only: true
+rabbitmq::ssl_port: '5671'
+rabbitmq::ssl_interface: "%{ipaddress}"
 rabbitmq::ssl_cacert: '/etc/rabbitmq/ssl/ca.pem'
 rabbitmq::ssl_cert: '/etc/rabbitmq/ssl/cert.pem'
 rabbitmq::ssl_key: '/etc/rabbitmq/ssl/key.pem'
@@ -52,8 +53,8 @@ profile::sensu_rabbitmq::key_content: ENC[PKCS7,MIIH/QYJKoZIhvcNAQcDoIIH7jCCB+oC
 # [ sensu all components ] -----------------------------------
 sensu::rabbitmq_vhost: "%{hiera('profile::sensu_rabbitmq::sensu_rmq_vhost')}"
 sensu::rabbitmq_host: 'sensu-rabbitmq-1.ec2.skaws'
-sensu::rabbitmq_port: '5671'
-sensu::rabbitmq_user: 'sensu'
+sensu::rabbitmq_port: "%{hiera('rabbitmq::ssl_port')}"
+sensu::rabbitmq_user: "%{hiera('profile::sensu_rabbitmq::sensu_rmq_user')}"
 sensu::rabbitmq_password: "%{hiera('profile::sensu_rabbitmq::sensu_rmq_pass')}"
 sensu::rabbitmq_reconnect_on_error: true
 sensu::rabbitmq_ssl: true
@@ -63,11 +64,9 @@ sensu::rabbitmq_ssl_private_key: "%{hiera('profile::sensu_rabbitmq::key_content'
 sensu::redis_host: 'sensu-redis-cluster.daqt20.0001.usw1.cache.amazonaws.com'
 sensu::redis_port: '6379'
 
-
 ##############################################################
 # puppetdb -- aws-west-1 specific
 ##############################################################
-
 puppetdb::manage_firewall: false
 puppetdb::database: 'postgres'
 puppetdb::database_host: 'localhost'
