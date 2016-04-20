@@ -1,0 +1,69 @@
+---
+sudo::configs:
+    'centos':
+        'content'   : 'centos ALL=(ALL) NOPASSWD:ALL'
+        'priority'  : 10
+#sensu::rabbitmq_host: 10.0.77.24
+#sensu::rabbitmq_user: 'guest'
+#sensu::rabbitmq_password: ENC[PKCS7,MIIBewYJKoZIhvcNAQcDoIIBbDCCAWgCAQAxggEjMIIBHwIBADAHMAIxAAIBATANBgkqhkiG9w0BAQEFAASCAQAPlBKnd6sMFVBMqZQLq07x3fB/h1s9pU/15xlBr6eMCDKH8Uxzw74QrUb/9difAWKGl3dtLquGIgBY0RMgusOvW4rY5tBzKrubbgRtJ8HjEvgKVNlZsLpEGSiFEz4ctkRFgNi0k7/R2DgSwX21lTO6dnxVy2ezm25pDyCXdp9eEGEBpwKgIUeUpdtXD9NCYXkByesvv54AB4iwbdLB45mmXjFF1NJlGhIjHsgeMy1R/WYQmtC3RKt8gmS4kwutngLq7OkqfjNRhDJeF/LSF8Tv4NBaUcSlBjQMXP3nLvsJ23shRaxVC2KIavVbv7tI10uT/Eow9HrSE1vNrSM3kAXrMDwGCSqGSIb3DQEHATAdBglghkgBZQMEASoEEJyeX/f3nSvpTgjc/h3oxgSAECfevQvCgZDQEJ1uD+cbqUQ=]
+#sensu::rabbitmq_port: 5672
+sensu::rabbitmq_vhost: '/sensu'
+sensu::rabbitmq_host: 'sensu-rabbitmq-1.midgar.local'
+sensu::rabbitmq_port: '5671'
+sensu::rabbitmq_user: 'sensu'
+sensu::rabbitmq_password: 'sensu'
+sensu::rabbitmq_reconnect_on_error: true
+sensu::rabbitmq_ssl: true
+sensu::rabbitmq_ssl_cert_chain: 'puppet:///modules/profile/sensu_rabbitmq/chain.pem'
+sensu::rabbitmq_ssl_private_key: ENC[PKCS7,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]
+
+
+
+ntp::servers:
+  - '0.ca.pool.ntp.org'
+  - '3.ca.pool.ntp.org'
+  - '0.north-america.pool.ntp.org'
+  - '3.north-america.pool.ntp.org'
+
+puppetdb::manage_firewall: false
+puppetdb::database: 'postgres'
+puppetdb::database_host: 'localhost'
+puppetdb::database_user: 'puppetdb'
+puppetdb::database_password: 'puppetdb'
+puppetdb::listen_address: "%{ipaddress}"
+puppetdb::ssl_listen_address: "%{ipaddress}"
+puppetdb::java_args:
+  '-Xmx': '512m'
+  '-Xms': '256m'
+
+puppetdb::database::postgresql::listen_addresses: '0.0.0.0'
+
+puppetdb::master::config::puppetdb_server: 'puppetdb.midgar.local'
+puppetdb::master::config::puppetdb_port: '8081'
+puppetdb::master::config::manage_report_processor: true
+puppetdb::master::config::enable_reports: true
+
+puppetexplorer::port: '1443'
+puppetexplorer::vhost_options:
+  'docroot_owner': 'root'
+
+#puppetexplorer::puppetdb_servers:
+#  'puppetdb.midgar.local': '/api'
+puppetexplorer::proxy_pass:
+  -
+    'path': '/api/pdb/query'
+    'url': 'http://puppetdb.midgar.local:8080/pdb/query'
+  - 
+    'path': '/api/pdb/meta'
+    'url': 'http://puppetdb.midgar.local:8080/pdb/meta'
+  - 
+    'path': '/api/metrics'
+    'url': 'http://puppetdb.midgar.local:8080/metrics'
+puppetexplorer::vhost_options:
+  rewrites:
+    - rewrite_rule:
+      - '^/api/metrics/v1/mbeans/puppetlabs.puppetdb.query.population:type=default,name=(.*)$  https://%%{}{HTTP_HOST}/api/metrics/v1/mbeans/puppetlabs.puppetdb.population:name=$1 [R=301,L]'
+
+monit::httpd: true
+monit::httpd_address: "%{ipaddress}"
+monit::httpd_password: 'password'
