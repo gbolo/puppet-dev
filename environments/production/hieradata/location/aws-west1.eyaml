@@ -63,6 +63,22 @@ sensu::rabbitmq_ssl_private_key: "%{hiera('profile::sensu_rabbitmq::key_content'
 # [ sensu api and server only ] ------------------------------
 sensu::redis_host: 'sensu-redis-cluster.daqt20.0001.usw1.cache.amazonaws.com'
 sensu::redis_port: '6379'
+sensu::api_bind: "%{ipaddress}"
+sensu::api_host: 'sensu-api-1.ec2.skaws'
+#sensu::api_port:
+sensu::api_user: 'sensu'
+sensu::api_password: 'sensu'
+# [ sensu uchiwa only ] --------------------------------------
+uchiwa::install_repo: false
+uchiwa::host: "%{ipaddress}"
+uchiwa::port: '3000'
+uchiwa::sensu_api_endpoints:
+  -
+    host: 'sensu-api-1.ec2.skaws'
+    insecure: false
+    ssl: false
+    user: 'sensu'
+    pass: 'sensu'
 
 ##############################################################
 # puppetdb -- aws-west-1 specific
