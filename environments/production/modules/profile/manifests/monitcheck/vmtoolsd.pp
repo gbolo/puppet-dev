@@ -1,5 +1,6 @@
 class profile::monitcheck::vmtoolsd (
 
+  $enabled    = true,
   $process    = 'vmtoolsd',
   $pid        = false,
   $port       = false,
@@ -10,15 +11,19 @@ class profile::monitcheck::vmtoolsd (
 
 ) {
 
-  monit::check { $process:
-    content  => epp($template, {
-                  process    => $process,
-                  pid        => $pid,
-                  proc_match => $proc_match,
-                  port       => $port,
-                  start      => $start,
-                  stop       => $stop,
-                }),
-  } 
+  if $enabled {
+
+    monit::check { $process:
+      content  => epp($template, {
+                    process    => $process,
+                    pid        => $pid,
+                    proc_match => $proc_match,
+                    port       => $port,
+                    start      => $start,
+                    stop       => $stop,
+                  }),
+    }
+
+  }
 
 }
