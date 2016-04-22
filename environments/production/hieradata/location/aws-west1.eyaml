@@ -69,18 +69,19 @@ sensu::api_bind: "%{ipaddress}"
 sensu::api_host: 'sensu-api-1.ec2.skaws'
 #sensu::api_port:
 sensu::api_user: 'sensu'
-sensu::api_password: 'sensu'
+sensu::api_password: ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEwDQYJKoZIhvcNAQEBBQAEggEACUVIYrr82fU/LCRSqbQuwBe2YHrEomkY4jlcDyiICPQuKa0eLks+chcUOKfrby/6u0ylmneRlLmS9Abu70l77/7CZUvvR4aqWIqCYdDr66MUk7GQS+WDoKnqSq608CSXYwz3ZBNQBNAj43l/92/F9E8GEnPIVaKvMvx5Xg80zeFx+KxSZb/qzXdsTYQd2P/jfLklcJl31FGHxqJPQMwJ9VPeytDXP8K9X5nfx3MjLGE6Cbv5O4gy86lJr2trCHO7k9QQOGNUliey0a5nMMiT5MqDQWswwaTshS+heJb3iiTKxubdPM033JMpBBquLkpVFt3ZyoHGl8m+mEi5QBpq0jBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAN9SHJ+MX0yOq5Q/yR/VZWgCBcWfQFhQMGGleaRzP0YkD4uhdXVHOfAelJ84icPGsq2g==]
 # [ sensu uchiwa only ] --------------------------------------
 uchiwa::install_repo: false
 uchiwa::host: "%{ipaddress}"
 uchiwa::port: '3000'
 uchiwa::sensu_api_endpoints:
   -
+    name: 'sk-aws'
     host: 'sensu-api-1.ec2.skaws'
     insecure: false
     ssl: false
     user: 'sensu'
-    pass: 'sensu'
+    pass: "%{sensu::api_password}"
 
 ##############################################################
 # puppetdb -- aws-west-1 specific
