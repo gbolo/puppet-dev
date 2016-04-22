@@ -13,7 +13,7 @@ class profile::sensucheck::proc_vmtoolsd (
 
 ) {
 
-  if $enabled {
+  if $virtual == 'vmware' {
   
     # Install the sensu plugin now using embedded ruby gem
     if $sensu_plugin {
