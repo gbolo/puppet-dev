@@ -83,12 +83,12 @@ uchiwa::sensu_api_endpoints:
     user: 'sensu'
     pass: "%{sensu::api_password}"
   -
-    name: 'midgar'
-    host: 'mgmt-uswest-1a.ec2.skaws'
+    name: 'sk-aws'
+    host: 'sensu-api-2.ec2.skaws'
     insecure: false
     ssl: false
     user: 'sensu'
-    pass: 'sensu'
+    pass: "%{sensu::api_password}"
 
 ##############################################################
 # puppetdb -- aws-west-1 specific
