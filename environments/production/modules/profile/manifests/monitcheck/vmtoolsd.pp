@@ -11,7 +11,7 @@ class profile::monitcheck::vmtoolsd (
 
 ) {
 
-  if $enabled {
+  if $virtual == 'vmware' {
 
     monit::check { $process:
       content  => epp($template, {
