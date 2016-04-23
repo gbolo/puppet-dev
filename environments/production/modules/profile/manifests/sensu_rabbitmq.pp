@@ -13,7 +13,7 @@ class profile::sensu_rabbitmq (
 ) {
 
    contain ::rabbitmq
-#   include ::profile::sensucheck::rabbitmq
+   include ::profile::sensucheck::rabbitmq
    include ::profile::monitcheck::rabbitmq
    include ::profile::firewall::rabbitmq
 
