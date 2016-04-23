@@ -10,7 +10,7 @@ class profile::sensucheck::log_sshd (
   $time_frame     = '-30min',
   $check_warn     = '1',
   $check_crit     = '3',
-  $check_cmd      = "/opt/sensu/embedded/bin/check-journal.rb -j "-u sshd.service" -q ".*Stopped.*|.*Failed.*" --since ${time_frame} -v -w ${check_warn} -c ${check_crit}",
+  $check_cmd      = "/opt/sensu/embedded/bin/check-journal.rb -j '-u sshd.service' -q '.*Stopped.*|.*Failed.*' --since ${time_frame} -v -w ${check_warn} -c ${check_crit}",
 
 ) {
 
