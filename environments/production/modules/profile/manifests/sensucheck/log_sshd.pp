@@ -46,6 +46,12 @@ class profile::sensucheck::log_sshd (
       subscribers  => $subscribers,
       handlers     => $handlers,
     }
+
+    # Viewing logs/journalctl requires sensu user to be added to adm group
+    # https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/s1-Using_the_Journal.html
+    # !! the sensu puppetforge has declared sensu user already. Let's use Plusignment to add this user to group
+    User<| title == sensu |> { groups +> [ "adm" ] }
+
   }
 
 
