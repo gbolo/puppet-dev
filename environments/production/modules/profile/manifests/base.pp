@@ -24,6 +24,7 @@ class profile::base {
   include ::profile::sensucheck::swap
   include ::profile::sensucheck::memory
   include ::profile::sensucheck::disk
+  include ::profile::sensucheck::log_sshd
   include ::profile::sensucheck::proc_crond
   include ::profile::sensucheck::proc_sshd
   include ::profile::sensucheck::proc_monit
