@@ -16,6 +16,12 @@ sensu::purge:
   plugins: true
 sensu::install_repo: true
 sensu::use_embedded_ruby: true
+sensu::client_custom:
+  tier: "%{::tier}"
+  stype: "%{::stype}"
+  location: "%{::location}"
+  virtual: "%{::virtual}"
+  pup_env: "%{::environment}"
 
 ##############################################################
 # ntp -- default
