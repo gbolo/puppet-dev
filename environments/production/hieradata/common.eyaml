@@ -6,6 +6,13 @@ profile::monitcheck::puppet_agent::enabled: false
 monit::httpd_password: 'm0n1t4dm1n'
 
 ##############################################################
+# collectd -- default
+##############################################################
+collectd::purge: true
+collectd::recurse: true
+collectd::purge_config: true
+
+##############################################################
 # sensu -- default
 ##############################################################
 sensu::client: true

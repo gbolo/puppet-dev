@@ -16,8 +16,6 @@ class profile::sensu_rabbitmq (
    include ::profile::sensucheck::rabbitmq
    include ::profile::monitcheck::rabbitmq
    include ::profile::firewall::rabbitmq
-   include ::profile::collectd::cpu
-   include ::profile::collectd::network
 
    rabbitmq_vhost { $sensu_rmq_vhost:
      ensure => present,
