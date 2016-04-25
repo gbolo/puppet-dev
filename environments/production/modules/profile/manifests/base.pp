@@ -11,6 +11,7 @@ class profile::base {
 
   # Monitoring of base services
   contain ::profile::base::firewall
+  include ::profile::base::logrotate
   include ::profile::firewall::monit
   include ::profile::monitcheck::ntpd
   include ::profile::monitcheck::crond
