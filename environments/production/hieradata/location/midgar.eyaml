@@ -2,6 +2,7 @@
 ##############################################################
 # collectd -- midgar specific
 ##############################################################
+collectd::interval: '60'
 profile::collectd::network::server: '10.0.77.22'
 profile::collectd::network::port: '25826'
 
