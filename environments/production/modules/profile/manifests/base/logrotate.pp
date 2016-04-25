@@ -19,28 +19,4 @@ class profile::base::logrotate (
 	}
   }
 
-  # no packages own wtmp and btmp. rotate here
-
-  logrotate::rule { 'wtmp':
-    path         => '/var/log/wtmp',
-    rotate       => 1,
-    rotate_every => 'monthly',
-    minsize      => '1M',
-    create       => true,
-    create_owner => 'root',
-    create_group => 'utmp',
-    create_mode  => '0664',
-  }
-
-  logrotate::rule { 'btmp':
-    path         => '/var/log/btmp',
-    rotate       => 1,
-    rotate_every => 'monthly',
-    missingok    => true,
-    create       => true,
-    create_owner => 'root',
-    create_group => 'utmp',
-    create_mode  => '0664',
-  }
-
 }
