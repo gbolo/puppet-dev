@@ -5,6 +5,7 @@ class profile::collectd::cpu (
 ) {
 
   if $enabled {
+    include collectd
     include collectd::plugin::cpu
   }
 

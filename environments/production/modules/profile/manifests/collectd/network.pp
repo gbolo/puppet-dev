@@ -7,8 +7,11 @@ class profile::collectd::network (
 ) {
 
   if $enabled {
+
+    include collectd
     collectd::plugin::network::server { $server:
       port => $port,
     }
+
   }
 }
